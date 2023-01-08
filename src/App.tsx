@@ -1,5 +1,11 @@
 import { useAsyncEffect } from "./hooks/use-async";
+import  styled from "styled-components";
 import { getPhoneNumberList } from "./service/twilio/twilio";
+
+
+export const Title = styled.h1.attrs({
+  className: "text-3xl font-bold underline"
+})``;
 
 function App() {
   const areaCode = 510;
@@ -13,9 +19,7 @@ function App() {
     dependencies: [],
   });
 
-  console.log(result);
-
-  return <div>My Twilio App</div>;
+  return <Title>My Twilio App</Title>
 }
 
 export default App;
