@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect, useReducer } from "react";
 
 import { AxiosError } from "axios";

@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useAsyncEffect } from "./hooks/use-async";
+import { getPhoneNumberList } from "./service/twilio/twilio";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const areaCode = 510;
+  const pageSize = 1000;
+
+  const [result] = useAsyncEffect({
+    fn: async () => {
+      const result = await getPhoneNumberList(areaCode, pageSize);
+      return result.data;
+    },
+    dependencies: [],
+  });
+
+  console.log(result);
+
+  return <div>My Twilio App</div>;
 }
 
 export default App;
