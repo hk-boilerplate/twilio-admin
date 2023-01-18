@@ -1,5 +1,6 @@
 import http from "../../axios";
 import {
+  GetTrunkMappedNumbersResponse,
   NumberTrunkMappingResponse,
   PhoneNumberResult,
   PurchaseGetResponse,
@@ -53,6 +54,17 @@ export const addPhoneNumberToTrunk = async (phoneNumberSid: string) => {
   const params = new URLSearchParams();
   params.append("PhoneNumberSid", phoneNumberSid);
   return http.post<NumberTrunkMappingResponse>(apiUrl, params, {
+    auth: {
+      username: sid!,
+      password: process.env.REACT_APP_TWILIO_AUTH_TOKEN_FE!,
+    },
+  });
+};
+
+export const getPhoneNumbersMappedToTrunk = async (pageSize: number) => {
+  const sid = process.env.REACT_APP_TWILIO_SID_FE;
+  const apiUrl = `${process.env.REACT_APP_TWILIO_API_TRUNK_URL}/${process.env.REACT_APP_TWILIO_TRUNK_ID}/PhoneNumbers?PageSize=${pageSize}`;
+  return http.get<GetTrunkMappedNumbersResponse>(apiUrl, {
     auth: {
       username: sid!,
       password: process.env.REACT_APP_TWILIO_AUTH_TOKEN_FE!,

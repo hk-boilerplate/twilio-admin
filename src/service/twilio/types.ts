@@ -148,4 +148,17 @@ export type NumberTrunkMappingResponse = {
     phone_number: string;
   };
 };
+
+export type GetTrunkMappedNumbersResponse = {
+  phone_numbers: NumberTrunkMappingResponse[];
+  meta: {
+    page: number;
+    page_size: number;
+    first_page_url: string;
+    previous_page_url: string;
+    url: string;
+    next_page_url: string;
+    key: string;
+  };
+};
 // end region
