@@ -71,3 +71,16 @@ export const getPhoneNumbersMappedToTrunk = async (pageSize: number) => {
     },
   });
 };
+
+export const deletePhoneNumberMappedToTrunk = async (
+  phoneNumberSid: string
+) => {
+  const sid = process.env.REACT_APP_TWILIO_SID_FE;
+  const apiUrl = `${process.env.REACT_APP_TWILIO_API_TRUNK_URL}/${process.env.REACT_APP_TWILIO_TRUNK_ID}/PhoneNumbers/${phoneNumberSid}`;
+  return http.delete(apiUrl, {
+    auth: {
+      username: sid!,
+      password: process.env.REACT_APP_TWILIO_AUTH_TOKEN_FE!,
+    },
+  });
+};
