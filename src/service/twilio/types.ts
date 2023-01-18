@@ -116,3 +116,36 @@ export type IncomingPhoneNumber = {
 };
 
 // end region
+
+// region Trunk
+export type NumberTrunkMappingResponse = {
+  sid: string;
+  date_created: string;
+  date_updated: string;
+  friendly_name: string;
+  account_sid: string;
+  phone_number: string;
+  api_version: string;
+  voice_caller_id_lookup: string;
+  voice_url: string;
+  voice_method: string;
+  voice_fallback_url: string;
+  voice_fallback_method: string;
+  status_callback: string;
+  status_callback_method: string;
+  voice_application_sid: string;
+  trunk_sid: string;
+  sms_url: string;
+  sms_method: string;
+  sms_fallback_url: string;
+  sms_fallback_method: string;
+  sms_application_sid: string;
+  address_requirements: string;
+  beta: boolean;
+  url: string;
+  capabilities: Capabilities;
+  links: {
+    phone_number: string;
+  };
+};
+// end region
