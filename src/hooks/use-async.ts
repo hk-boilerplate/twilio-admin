@@ -36,14 +36,14 @@ export type AsyncState<T> = {
 
 export type AsyncReturn<T> = [
   state: AsyncState<T>,
-  run: () => Promise<void>,
+  run: (args?: any) => Promise<void>,
   setState: (value: T) => void
 ];
 
 // use async hook
 
 export type UseAsyncProps<T> = {
-  fn: () => Promise<T>;
+  fn: (args: any) => Promise<T>;
 };
 
 export function useAsync<T>({ fn }: UseAsyncProps<T>): AsyncReturn<T> {
@@ -71,10 +71,10 @@ export function useAsync<T>({ fn }: UseAsyncProps<T>): AsyncReturn<T> {
     dispatch({ type: "finish", value });
   };
 
-  const run = async () => {
+  const run = async (args: any) => {
     try {
       dispatch({ type: "start" });
-      const value = await fn();
+      const value = await fn(args);
       dispatch({ type: "finish", value });
     } catch (error) {
       dispatch({
